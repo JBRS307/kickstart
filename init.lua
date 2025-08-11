@@ -521,6 +521,7 @@ require('lazy').setup({
 
       -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
+      { 'folke/neoconf.nvim', opts = {} },
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -714,6 +715,7 @@ require('lazy').setup({
         -- ts_ls = {},
         --
         bashls = {},
+        jsonls = {},
 
         lua_ls = {
           -- cmd = { ... },
