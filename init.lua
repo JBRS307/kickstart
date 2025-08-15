@@ -173,8 +173,6 @@ vim.o.confirm = true
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
-vim.keymap.set('i', '<Tab>', '<Tab>', { noremap = true })
-vim.keymap.set('i', '<S-Tab>', '<S-Tab>', { noremap = true })
 
 vim.keymap.set('n', '<leader><Tab>2', function()
   vim.o.shiftwidth = 2
@@ -846,7 +844,21 @@ require('lazy').setup({
           --   end,
           -- },
         },
-        opts = {},
+        config = function()
+          local luasnip = require 'luasnip'
+          local unlinkgrp = vim.api.nvim_create_augroup('UnlinkSnippetOnModeChange', { clear = true })
+
+          vim.api.nvim_create_autocmd('ModeChanged', {
+            group = unlinkgrp,
+            pattern = { 's:n', 'i:*' },
+            desc = 'Forget the current snippet when leaving the insert mode',
+            callback = function(evt)
+              if luasnip.session and luasnip.session.current_nodes[evt.buf] and not luasnip.session.jump_active then
+                luasnip.unlink_current()
+              end
+            end,
+          })
+        end,
       },
       'folke/lazydev.nvim',
     },
