@@ -173,8 +173,6 @@ vim.o.confirm = true
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
-vim.keymap.set('i', '<Tab>', '<Tab>', { noremap = true })
-vim.keymap.set('i', '<S-Tab>', '<S-Tab>', { noremap = true })
 
 vim.keymap.set('n', '<leader><Tab>2', function()
   vim.o.shiftwidth = 2
@@ -465,6 +463,9 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+      vim.keymap.set('n', '<leader>scd', function()
+        builtin.find_files { cwd = vim.fn.expand '%:p:h' }
+      end, { desc = '[S]earch only in [C]urrent [D]irectory' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
@@ -842,7 +843,21 @@ require('lazy').setup({
           --   end,
           -- },
         },
-        opts = {},
+        config = function()
+          local luasnip = require 'luasnip'
+          local unlinkgrp = vim.api.nvim_create_augroup('UnlinkSnippetOnModeChange', { clear = true })
+
+          vim.api.nvim_create_autocmd('ModeChanged', {
+            group = unlinkgrp,
+            pattern = { 's:n', 'i:*' },
+            desc = 'Forget the current snippet when leaving the insert mode',
+            callback = function(evt)
+              if luasnip.session and luasnip.session.current_nodes[evt.buf] and not luasnip.session.jump_active then
+                luasnip.unlink_current()
+              end
+            end,
+          })
+        end,
       },
       'folke/lazydev.nvim',
     },
