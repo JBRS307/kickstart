@@ -82,6 +82,7 @@ return {
           end,
         },
       }, -- Providers must be explicitly set up to make them available.
+      user_input_ui = 'buffer',
     }
   end,
 }
