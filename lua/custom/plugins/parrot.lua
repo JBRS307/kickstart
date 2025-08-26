@@ -19,7 +19,7 @@ return {
             command = { temperature = 0.8, topP = 1, topK = 10, maxOutputTokens = 8192 },
           },
           topic = {
-            model = 'gemini-2.5-pro',
+            model = 'gemini-2.5-flash',
             params = { maxOutputTokens = 64 },
           },
           headers = function(self)
@@ -82,7 +82,6 @@ return {
           end,
         },
       }, -- Providers must be explicitly set up to make them available.
-      user_input_ui = 'buffer',
     }
   end,
 }

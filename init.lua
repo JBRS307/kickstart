@@ -726,6 +726,7 @@ require('lazy').setup({
         --
         bashls = {},
         jsonls = {},
+        marksman = {},
 
         lua_ls = {
           -- cmd = { ... },
