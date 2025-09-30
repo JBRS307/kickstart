@@ -733,6 +733,7 @@ require('lazy').setup({
         bashls = {},
         cssls = {},
         html = {},
+        gh_actions_ls = {},
 
         lua_ls = {
           -- cmd = { ... },
