@@ -617,6 +617,11 @@ require('lazy').setup({
             require('telescope.builtin').lsp_definitions()
           end, '[G]o to definition and split [V]ertically')
 
+          map('gro', function()
+            vim.cmd 'tab split'
+            require('telescope.builtin').lsp_definitions()
+          end, '[G]o to definition and [O]pen in new tab')
+
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
           ---@param method vim.lsp.protocol.Method
