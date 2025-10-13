@@ -729,6 +729,7 @@ require('lazy').setup({
             ['rust-analyzer'] = {
               check = {
                 allTargets = true,
+                features = 'all',
               },
             },
           },
