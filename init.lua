@@ -255,7 +255,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'rust', 'typescript', 'gitcommit' },
+  pattern = { 'rust', 'typescript', 'gitcommit', 'git_config', 'git_rebase', 'gitignore' },
   callback = function()
     -- syntax highlighting, provided by Neovim
     vim.treesitter.start()
