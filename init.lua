@@ -260,6 +260,15 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function()
     -- syntax highlighting, provided by Neovim
     -- vim.treesitter.start()
+    local max_size = 512 * 1042
+    local bufnr = vim.api.nvim_get_current_buf()
+    local filename = vim.api.nvim_buf_get_name(bufnr)
+    local ok, stats = pcall(vim.loop.fs_stat, filename)
+
+    if ok and stats and stats.size > max_size then
+      return
+    end
+
     pcall(vim.treesitter.start)
     -- folds, provided by Neovim
     -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
