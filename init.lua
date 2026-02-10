@@ -255,10 +255,12 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'rust', 'typescript', 'gitcommit', 'git_config', 'git_rebase', 'gitignore', 'diff' },
+  -- pattern = { 'rust', 'typescript', 'gitcommit', 'git_config', 'git_rebase', 'gitignore', 'diff' },
+  pattern = '*',
   callback = function()
     -- syntax highlighting, provided by Neovim
-    vim.treesitter.start()
+    -- vim.treesitter.start()
+    pcall(vim.treesitter.start)
     -- folds, provided by Neovim
     -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
     -- vim.wo.foldmethod = 'expr'
