@@ -209,9 +209,7 @@ vim.diagnostic.config {
 
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
-vim.keymap.set('n', '<leader>i', function()
-  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { 0 }, { 0 })
-end, { desc = 'Toggle inlay hints' })
+vim.keymap.set('n', '<leader>i', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { 0 }, { 0 }) end, { desc = 'Toggle inlay hints' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -266,29 +264,29 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then error('Error cloning lazy.nvim:\n' .. out) end
 end
 
-vim.api.nvim_create_autocmd('FileType', {
-  -- pattern = { 'rust', 'typescript', 'gitcommit', 'git_config', 'git_rebase', 'gitignore', 'diff' },
-  pattern = '*',
-  callback = function()
-    -- syntax highlighting, provided by Neovim
-    -- vim.treesitter.start()
-    local max_size = 512 * 1042
-    local bufnr = vim.api.nvim_get_current_buf()
-    local filename = vim.api.nvim_buf_get_name(bufnr)
-    local ok, stats = pcall(vim.loop.fs_stat, filename)
-
-    if ok and stats and stats.size > max_size then
-      return
-    end
-
-    pcall(vim.treesitter.start)
-    -- folds, provided by Neovim
-    -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-    -- vim.wo.foldmethod = 'expr'
-    -- indentation, provided by nvim-treesitter
-    -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-  end,
-})
+-- vim.api.nvim_create_autocmd('FileType', {
+--   -- pattern = { 'rust', 'typescript', 'gitcommit', 'git_config', 'git_rebase', 'gitignore', 'diff' },
+--   pattern = '*',
+--   callback = function()
+--     -- syntax highlighting, provided by Neovim
+--     -- vim.treesitter.start()
+--     local max_size = 512 * 1042
+--     local bufnr = vim.api.nvim_get_current_buf()
+--     local filename = vim.api.nvim_buf_get_name(bufnr)
+--     local ok, stats = pcall(vim.loop.fs_stat, filename)
+--
+--     if ok and stats and stats.size > max_size then
+--       return
+--     end
+--
+--     pcall(vim.treesitter.start)
+--     -- folds, provided by Neovim
+--     -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+--     -- vim.wo.foldmethod = 'expr'
+--     -- indentation, provided by nvim-treesitter
+--     -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+--   end,
+-- })
 
 ---@type vim.Option
 local rtp = vim.opt.rtp
@@ -462,9 +460,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader>scd', function()
-        builtin.find_files { cwd = vim.fn.expand '%:p:h' }
-      end, { desc = '[S]earch only in [C]urrent [D]irectory' })
+      vim.keymap.set('n', '<leader>scd', function() builtin.find_files { cwd = vim.fn.expand '%:p:h' } end, { desc = '[S]earch only in [C]urrent [D]irectory' })
       vim.keymap.set('n', '<leader>scc', builtin.commands, { desc = '[S]earch [C]ommands' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
@@ -878,9 +874,7 @@ require('lazy').setup({
             pattern = { 's:n', 'i:*' },
             desc = 'Forget the current snippet when leaving the insert mode',
             callback = function(evt)
-              if luasnip.session and luasnip.session.current_nodes[evt.buf] and not luasnip.session.jump_active then
-                luasnip.unlink_current()
-              end
+              if luasnip.session and luasnip.session.current_nodes[evt.buf] and not luasnip.session.jump_active then luasnip.unlink_current() end
             end,
           })
         end,
@@ -1051,7 +1045,8 @@ require('lazy').setup({
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     config = function()
-      local filetypes = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
+      local filetypes =
+        { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'gitcommit', 'rust', 'typescript' }
       require('nvim-treesitter').install(filetypes)
       vim.api.nvim_create_autocmd('FileType', {
         pattern = filetypes,
