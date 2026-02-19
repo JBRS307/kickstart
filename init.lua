@@ -174,6 +174,8 @@ vim.o.confirm = true
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
+--
+vim.keymap.set('t', '<leader><C-z>', '<C-\\><C-n>')
 
 vim.keymap.set('n', '<leader><Tab>2', function()
   vim.o.shiftwidth = 2
