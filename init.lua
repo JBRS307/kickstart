@@ -677,6 +677,8 @@ require('lazy').setup({
         rust_analyzer = {},
         jsonls = {},
         elixirls = {},
+        docker_language_server = {},
+        pylsp = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -1027,8 +1029,8 @@ require('lazy').setup({
         { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'gitcommit', 'rust', 'typescript', 'json' }
       require('nvim-treesitter').install(filetypes)
       vim.api.nvim_create_autocmd('FileType', {
-        pattern = filetypes,
-        callback = function() vim.treesitter.start() end,
+        pattern = '*',
+        callback = function(args) pcall(vim.treesitter.start, args.buf) end,
       })
     end,
   },
