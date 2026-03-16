@@ -5,6 +5,7 @@ return {
   keys = {
     { '<leader>a', nil, desc = 'AI/Claude Code' },
     { '<leader>ac', '<cmd>ClaudeCode<cr>', desc = 'Toggle Claude' },
+    { '<leader>ao', '<cmd>ClaudeCode --model=opus<cr>', desc = 'Open Claude with Opus model' },
     { '<leader>af', '<cmd>ClaudeCodeFocus<cr>', desc = 'Focus Claude' },
     { '<leader>ar', '<cmd>ClaudeCode --resume<cr>', desc = 'Resume Claude' },
     { '<leader>aC', '<cmd>ClaudeCode --continue<cr>', desc = 'Continue Claude' },
