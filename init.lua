@@ -517,6 +517,7 @@ require('lazy').setup({
           automatic_enable = {
             exclude = {
               'rust_analyzer',
+              'gdscript',
             },
           },
         },
@@ -682,6 +683,9 @@ require('lazy').setup({
               },
             },
           },
+        },
+        gdscript = {
+          cmd = vim.lsp.rpc.connect('127.0.0.1', 6005),
         },
         html = {},
         gh_actions_ls = {},
@@ -1007,6 +1011,7 @@ require('lazy').setup({
         'tsx',
         'diff',
         'gitcommit',
+        'gdscript',
       }
       require('nvim-treesitter').install(filetypes)
       vim.api.nvim_create_autocmd('FileType', {
