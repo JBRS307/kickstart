@@ -189,8 +189,6 @@ vim.keymap.set('n', '<leader><Tab>4', function()
   vim.o.tabstop = 4
 end, { desc = 'Change shiftwidth and tabstop to 4' })
 
-vim.keymap.set('n', '<leader>cd', '<cmd>cd %:h<CR>', { desc = 'Change cwd to directory of currently opened file' })
-
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
