@@ -124,7 +124,21 @@ vim.o.showmode = false
 -- vim.schedule(function()
 --   vim.o.clipboard = ''
 -- end)
-vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
+-- vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
+
+vim.schedule(function() vim.o.clipboard = '' end)
+
+-- Yanking (Copying)
+vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
+vim.keymap.set('n', '<leader>Y', '"+Y', { desc = 'Yank till end of line to system clipboard' })
+
+-- Pasting
+vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'Paste from system clipboard after cursor' })
+vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P', { desc = 'Paste from system clipboard before cursor' })
+
+-- Deleting (Cutting)
+vim.keymap.set({ 'n', 'v' }, '<leader>d', '"+d', { desc = 'Delete to system clipboard' })
+vim.keymap.set('n', '<leader>D', '"+D', { desc = 'Delete till end of line to system clipboard' })
 
 -- Enable break indent
 vim.o.breakindent = true
