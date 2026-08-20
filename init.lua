@@ -697,24 +697,25 @@ require('lazy').setup({
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --  See `:help lsp-config` for information about keys and how to configure
       local servers = {
-        clangd = {},
+        -- clangd = {},
         -- gopls = {},
         -- pyright = {},
         rust_analyzer = {},
         jsonls = {},
         elixirls = {},
         docker_language_server = {},
-        pylsp = {
-          settings = {
-            pylsp = {
-              plugins = {
-                pycodestyle = {
-                  ignore = { 'E501' },
-                },
-              },
-            },
-          },
-        },
+        dockerfile_language_server = {},
+        -- pylsp = {
+        --   settings = {
+        --     pylsp = {
+        --       plugins = {
+        --         pycodestyle = {
+        --           ignore = { 'E501' },
+        --         },
+        --       },
+        --     },
+        --   },
+        -- },
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -722,13 +723,20 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
-        eslint = {},
+        -- eslint = {},
         markdown_oxide = {},
         --
         bashls = {},
         cssls = {},
         html = {},
         gh_actions_ls = {},
+        yamlls = {
+          settings = {
+            schemas = {
+              kubernetes = 'k8s/*.yaml',
+            },
+          },
+        },
 
         lua_ls = {
           -- cmd = { ... },
