@@ -701,6 +701,7 @@ require('lazy').setup({
         -- gopls = {},
         -- pyright = {},
         rust_analyzer = {},
+        terraformls = {},
         jsonls = {},
         elixirls = {},
         docker_language_server = {},
@@ -732,8 +733,10 @@ require('lazy').setup({
         gh_actions_ls = {},
         yamlls = {
           settings = {
-            schemas = {
-              kubernetes = 'k8s/*.yaml',
+            yaml = {
+              schemas = {
+                kubernetes = 'k8s/*.yaml',
+              },
             },
           },
         },
