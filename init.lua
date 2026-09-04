@@ -256,6 +256,12 @@ vim.keymap.set('n', '<leader>gdv', '<cmd>Gvdiffsplit!<CR>', { desc = 'Solve merg
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
+vim.filetype.add {
+  pattern = {
+    ['.*%.ya?ml%.tmpl'] = 'yaml',
+  },
+}
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -704,6 +710,15 @@ require('lazy').setup({
                 pycodestyle = {
                   ignore = { 'E501' },
                 },
+              },
+            },
+          },
+        },
+        yamlls = {
+          settings = {
+            yaml = {
+              schemas = {
+                kubernetes = 'k8s/*.yaml',
               },
             },
           },
