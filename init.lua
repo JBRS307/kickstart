@@ -712,7 +712,7 @@ require('lazy').setup({
         rust_analyzer = {
           settings = {
             ['rust-analyzer'] = {
-              check = {
+              cargo = {
                 allTargets = true,
                 features = 'all',
               },
