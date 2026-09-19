@@ -262,6 +262,7 @@ vim.keymap.set('n', '<leader>gdv', '<cmd>Gvdiffsplit!<CR>', { desc = 'Solve merg
 vim.filetype.add {
   pattern = {
     ['.*%.ya?ml%.tmpl'] = 'yaml',
+    ['.*%.ya?ml%.tftpl'] = 'yaml',
   },
 }
 
@@ -737,6 +738,7 @@ require('lazy').setup({
         cssls = {},
         html = {},
         gh_actions_ls = {},
+        gitlab_ci_ls = {},
         yamlls = {
           settings = {
             yaml = {
